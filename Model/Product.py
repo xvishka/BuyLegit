@@ -1,6 +1,7 @@
 class Product:
 
-    def __init__(self,productId,productTitle,productDesciption,productUrl,price,condition,currencyType,shipping,sellerUserName):
+    def __init__(self,productId,productTitle,productDesciption,productUrl,price,condition,currencyType,shipping,seller):
+       
         self.productId=productId
         self.productTitle=productTitle
         self.productDesciption=productDesciption
@@ -9,9 +10,11 @@ class Product:
         self.condition=condition
         self.currencyType=currencyType
         self.shipping=shipping
-        self.sellerUserName = sellerUserName
+        self.seller=seller
 
-    def getProductId(self):
+ """   product1 = Product("P001p","Black Watch","AAAAAAAAABBBBBBB","prouduct1.url",254.25,"YES","Dollar","Free",Seller("Thiran","101125",12,75.24,True)
+    """
+     def getProductId(self):
         return self.productId
 
     def getProductTitle(self):
@@ -19,7 +22,7 @@ class Product:
 
     def getProductDesciption(self):
         return self.productDesciption
-    
+
     def getProductUrl(self):
         return self.productUrl
 
@@ -64,5 +67,3 @@ class Product:
 
     def setSellerUserName(self, sellerUserName):
         self.sellerUserName = sellerUserName
-
-    

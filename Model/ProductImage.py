@@ -1,9 +1,11 @@
 class ProductImage:
 
-    def __init__(self,imageId,imageSize,isDuplicate):
+    def _init_(self,hasDuplicate,duplicateName,imageId,imageSize):
+        self.hasDuplicate=hasDuplicate
+        self.duplicateName=duplicateName
         self.imageId = imageId
         self.imageSize = imageSize
-        self.isDuplicate = isDuplicate
+       
 
     def getImageId(self):
         return self.imageId
@@ -11,7 +13,7 @@ class ProductImage:
     def getImageSize(self):
         return self.imageSize
 
-    def getIsDuplicat(self):
+    def getHasDuplicat(self):
         return self.isDuplicate
 
     def setImageId(self, imageId):
@@ -20,5 +22,5 @@ class ProductImage:
     def setImageSize(self, imageSize):
         self.imageSize = imageSize
 
-    def setIsDuplicate(self, isDuplicate):
+    def setHasDuplicate(self, isDuplicate):
         self.isDuplicate = isDuplicate
