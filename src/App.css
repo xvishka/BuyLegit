@@ -1,0 +1,166 @@
+/* large tables and laptops */
+p,a,ul,li{
+  margin: 0;
+  padding: 0;
+  text-decoration:none;
+  color: black;
+}
+
+li{
+  list-style-type: none;
+}
+.grid{
+  display: grid;
+  grid-template-columns: repeat(8,1fr);
+}
+
+.site-nav{
+  background: url('../src/assets/nav-1.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 40px 40px;
+  
+}
+.logo{
+  grid-column: 1/2;
+}
+.logo img{
+  width: 900%;
+}
+
+.search input{
+  border-radius: 5px;
+  font-size: 12px;
+  font-family: 'Poppins', sans-serif;
+}
+#dropdown{
+  border-radius: 5px;
+  font-family: 'Poppins', sans-serif;
+}
+.site-nav ul{
+  display: flex;
+  grid-column: 8/9;
+  grid-row:1;
+  padding-left: 10px;
+  justify-content: flex-end;
+  align-self: center;
+  gap: 10px;
+}
+select{
+  font-size: 12px;
+}
+.bar{
+  background-color: #50ACB9;
+  padding: 5px;
+  padding-left: 50px;
+    
+}
+.bar li{
+  color: white;
+  font-size: 10px;
+}
+.cover{
+  background: url('../src/assets/cover.png');
+  height: 100%; 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+  padding: 50px;
+  font-family: 'Poppins', sans-serif;
+}
+.cat1{
+  padding-left: 50px;
+  margin: 0 auto;
+}
+.cart1 div{
+  grid-column: 1/9;
+  grid-row: 5/6;
+  color: #880a0a;
+  padding: 50px 100px;
+  height: 400px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.footerDiv{
+  display: grid;
+  grid-template-columns: 100%;
+  position: fixed;
+  background-color: rgb(57, 170, 185);
+  padding-top: 10px;
+  padding-right: 20px;
+  bottom: 0;
+  width:100%;
+  font-size: 80%;
+  height: 10%;
+  font-family: 'Poppins', sans-serif;
+}
+
+#footerDes{
+  color: white;
+  text-indent: -1%;
+  list-style: none;
+  text-align: left;
+  line-height: 1.9;
+  margin-left: 4%; 
+}
+
+@media screen and (min-width: 620px){
+  .logo{
+      grid-column: 1/2;
+  }
+  .logo img{
+      width: 300%;
+  }
+  .site-nav ul{
+      grid-column: 5/9;
+  }
+  select{
+      font-size: 1em;
+  }
+  .search input{
+      font-size: 1em;
+      padding-right: 50px; 
+  }
+  .bar li{
+      font-size: 1em;
+  }
+}
+
+@media screen and (min-width: 920px){
+  .logo{
+      grid-column: 1/2;
+  }
+  .logo img{
+      width: 250%;
+  }
+  select{
+      font-size: 1.1em;
+  }
+  .search input{
+      font-size: 1.1em;
+      padding-right: 150px; 
+  }
+  .bar li{
+      font-size: 1.1em;
+  }
+}
+
+/*Dektops*/
+@media screen and (min-width: 1200px){
+  .logo{
+      grid-column: 1/2;
+      
+  }
+  .logo img{
+      width: 200%;
+  }
+  .site-nav ul{
+      gap: 20px;
+  } 
+  .search input{
+      padding-right: 200px; 
+  }   
+ 
+}
+
