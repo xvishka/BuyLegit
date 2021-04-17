@@ -1,129 +1,29 @@
-
-* { 
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
- }
-
- nav {
-   display: flex;
-   justify-content: space-around;
-   min-height: 10vh;
-   align-items: center;
-   font-family: Arial, Helvetica, sans-serif; 
-   background-image: url(../src/component/assets/nav-1.png);
-  }
-  footer{
-    bottom: 0;
-    min-height: 100px;    
-    background-image: url(../src/component/assets/nav-1.png);
-    position: relative;
-    
-  }
-  li, ul{
-    list-style-type:none;
-    display: flex;
-  }
-.logoF{
-  margin-left: 90px;
+.row{
+    padding-top: 2%;
 }
- .logo{
-    margin-top: 4em;
-    margin-left: -10em;
-  }
 
-  .logoImg{
-    margin-top: -1em;
-    margin-bottom: 3em;
-  }
-  nav .nav-options{
-    display: flex;
-    width: 30%;
-    justify-content: space-around;
-  }
-  .searchProduct{
-    width: 400px;
-    height: 40px; 
-    border-radius: 12px;
-    border: rgb(16, 212, 212);
-    padding: 5px 5px 5px 25px;
-    font-size: 20px;
-    margin-right: 15px;
-  }
-.options{
+.col-md-3{
+    margin-bottom: 2%;
+    /* padding-bottom: 1%; */
+}
+
+.card{
+    box-shadow: 10px 10px 5px #aaaaaa;
+}
+
+#category-drop-down{
+    list-style: none; 
+}
+
+.sorting-options{
     width: 12em;
-    height: 42px;
-    border-radius: 12px;
-    padding: 5px 5px 5px 25px;
-    font-size: 19px;
-    color: rgb(114, 114, 114);
+    height: 40px;
+    border-radius: 4px;
+    margin-right: 20px ;
+    font-size: 15px;
+    color: rgb(112, 55, 55);
   }
-  .footer-options{
-margin-left: 470px;
 
-  }
-.homeBarMain{
-  background-color: rgb(34, 192, 192);
-  color: white;
-  font-weight: bold;
-  font-size: 25px;
-  justify-content: space-around;
-  display: flex;
-  height: 50px;
-  align-items: center;
-}
-.homeBar{
-  margin-left: -20em;
-}
-.loginBar{
-  margin-right: -15em;
-}
-.main-cover{
-  height: 300px;
-  background-image: url(../src/component/assets/cover.png);
-}
-.coverPara{
-  color: rgb(255, 255, 255);
-  font-size: 25px;
-  padding: 60px;
-  font-weight: 700;
-  letter-spacing: 3px;
-}
-.cLogo{
-  float: right;
-  padding-top: 170px;
-}
-.eBay{
-  padding-top: 120px;
-  width: 170px;
-  float: right;
-}
-.box{
-  display:block;
-  padding: 30px;
-  justify-content: space-around;
-  white-space: normal;
-  display: inline-block;
-  overflow: hidden;
-  box-shadow: 0px 0px 15px -10px;
-  margin: 60px;
-}
-.cardImage{
-  margin: 0;
-  overflow: hidden;
-  height: 200px;
-}
-
-h3,p {
-  margin: 0;
-  padding: 0;
-}
-.text{
-  color:black;
-  font-weight: 600;
-}
-
-.links{
-  text-decoration: none;
-  color: white;
+.pagination{
+    margin-top: 10px;
 }
