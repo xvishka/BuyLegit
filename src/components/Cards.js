@@ -1,12 +1,13 @@
 import React,{useEffect,useState} from 'react'
 import axios from 'axios';
 import NavBar from './NavBar';
+import Pagination from './Pagination';
 
 const allProductsUrl = "http://127.0.0.1:5000/api/product/all";
 const sortByPriceUrl = "http://127.0.0.1:5000/api/product/all/priceSort";
 const sortByFeedbackScoreUrl = "http://127.0.0.1:5000/api/product/all/feedbackScoreSort"
 
-function Cards() {
+const Cards = () => {
     const [Data,setData]=useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [productsPerPage, setProductsPerPage] = useState(20);
@@ -48,14 +49,17 @@ function Cards() {
 
     //Get current posts
     const indexOfLastProduct = currentPage * productsPerPage;
-    const indexOfFirstProduct = indexOfLastProduct - productsPerPage
-    const currentPosts = Data.slice(indexOfFirstProduct,indexOfLastProduct);
+    const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+    const currentProducts = Data.slice(indexOfFirstProduct,indexOfLastProduct);
+
+    //Change page
+    const paginate = pageNumber => setCurrentPage(pageNumber);
 
     return (
         <div>
             <NavBar nav={navProp} handleDropdownChange={handleDropdownChange}/>
             <div className="row">
-                {currentPosts.map((data,key)=>{
+                {currentProducts.map((data,key)=>{
                     return(
                         
                             <div className="col-md-3">
@@ -75,6 +79,7 @@ function Cards() {
                     );
                 })}
             </div>
+            <Pagination productsPerPage={productsPerPage} totalProducts={Data.length} paginate={paginate}></Pagination>
        </div>
     )
 }
