@@ -1,18 +1,25 @@
 import React,{useEffect,useState} from 'react'
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, NavLink } from 'react-router-dom';
+import Route from 'react-router-dom/Route';
 import NavBar from './NavBar';
 import Pagination from './Pagination';
+import Product from './Product';
+import history from './History';
 
 const allProductsUrl = "http://127.0.0.1:5000/api/product/all";
 const sortByPriceUrl = "http://127.0.0.1:5000/api/product/all/priceSort";
 const sortByFeedbackScoreUrl = "http://127.0.0.1:5000/api/product/all/feedbackScoreSort"
 
 const Cards = () => {
+    
     const [Data,setData]=useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [productsPerPage, setProductsPerPage] = useState(20);
     const [navProp,setNavProp]=useState([{sort:"all"}]);
     const [sort,setSort]=useState("all");
+    const [redirect, setRedirect] = useState(true);
 
     const handleDropdownChange=(e)=>{
         setSort(e);
@@ -55,15 +62,27 @@ const Cards = () => {
     //Change page
     const paginate = pageNumber => setCurrentPage(pageNumber);
 
+    if(!redirect){
+        console.log(redirect);
+        return <Redirect to="/product"/>
+    }
+    //Get a single product
+    const clickProduct=(Data)=>{
+        
+        console.log(Data.title);
+        <Product imageUrl={Data.image} title={Data.title} price={Data.price} feedbackScore={Data.feedbackScore} 
+        positiveFeedbackPercentage={Data.positiveFeedbackPercent} sellerUserName={Data.sellerUserName}
+        shipping={Data.shipping}/>
+    }
+
     return (
         <div>
             <NavBar nav={navProp} handleDropdownChange={handleDropdownChange}/>
             <div className="row">
                 {currentProducts.map((data,key)=>{
                     return(
-                        
                             <div className="col-md-3">
-                                <div className="card border-info h-100">
+                                <div className="card border-info h-100 text-center shadow"onClick={()=>{clickProduct(data);setRedirect(false);}}>
                                     <img src={data.image} className="card-img-top" alt="..."/>
                                     <div className="card-body" key={key}>
                                         <h5 className="card-title">{data.title}</h5>

@@ -7,8 +7,17 @@
     /* padding-bottom: 1%; */
 }
 
-.card{
-    box-shadow: 10px 10px 5px #aaaaaa;
+.card:hover{
+    box-shadow: 5px 10px 20px 1px rgba(0,0,0,0.250) !important;
+}
+
+.card-body{
+    padding: 3rem;
+}
+
+.card-text{
+    font-size: 0.9rem;
+    padding: 0.4rem 1.9rem;
 }
 
 #category-drop-down{
