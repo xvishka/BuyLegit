@@ -18,14 +18,14 @@ database = pymysql.connect(
     db='buylegit',
     )
 
-# ALGO : Inserting it to the database for Category.
+# Inserting it to the database for Category.
 def insertingCategory(cateId,Category):
     cursor = database.cursor()
     cursor.execute("""INSERT INTO Category (CategoryId ,Category )
                     VALUES (%s,%s);""",(cateId,Category))
     database.commit()
 
-# ALGO : getting data from the list and inserting it to the database for Unique Products.
+# getting data from the list and inserting it to the database for Unique Products.
 def insertingUniqueProducts(itemId,rank,title,categoryId,url,selName,feedS,posFeed,topRate,price,img,hasDupli):
     cursor = database.cursor()
     cursor.execute("""INSERT INTO UniqueProducts (ItemId,ProductRank ,Title,CategoryId,
@@ -34,7 +34,7 @@ def insertingUniqueProducts(itemId,rank,title,categoryId,url,selName,feedS,posFe
                     VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s );""",(itemId,rank,title,categoryId,url,selName,feedS,posFeed,topRate,price,img,hasDupli))
     database.commit()
 
-# ALGO : getting data from the list and inserting it to the database for Duplicate Products.
+# getting data from the list and inserting it to the database for Duplicate Products.
 def insertingDuplicateProducts(itemId,title,categoryId,url,selName,feedS,posFeed,topRate,price,img,masterId):
     cursor = database.cursor()
     cursor.execute("""INSERT INTO DuplicateProducts (ItemId,Title,CategoryId,
@@ -48,7 +48,7 @@ productList = []
 similarityList = []
 
 try:
-    f = open('ApicemData.json',)
+    f = open('Iphone7Case.json',)
     data = json.load(f)
 
     for q in data['products']:
@@ -57,21 +57,23 @@ try:
     f.close()
 
 except:
-    print("'ApicemData.json' File not Found")
+    print("'.json' File not Found")
 
 try:
     # Load Unique data and duplicate dat separately
-    ml = open('similarity.json',)
+    ml = open('Iphone7CaseSimilarity.json',)
     mlData = json.load(ml)
 
     for k in mlData:
         similarityList.append(k)
     ml.close()
 except:
-    print("'similarity.json' File not Found")
+    print("'.json' File not Found")
 
 listItems = []
 listItems2 = []
+
+print(similarityList)
 
 if(len(similarityList) != 0):
     for r in similarityList:
@@ -86,8 +88,8 @@ if(len(similarityList) != 0):
                     items.append(l['master_pi'])
             listItems2.append(items)  
         
-print(listItems2)
-
+# print(listItems2)
+print("list item 2: ", listItems2) 
 # get product category details
 if(len(productList) != 0):
     findCategoryProduct = productList[0]
@@ -273,7 +275,8 @@ if(len(listItems2) != 0):
                     getProduct = k
                     duplicateProductList.append(getProduct)
                     productList.remove(getProduct)
-                
+                    print(len(duplicateProductList))      
+              
         #sort duplicate product list
         tempList = []
         tempList = sortFinalOutput(duplicateProductList)
@@ -328,17 +331,24 @@ if(len(recommendedUniqueProductList) != 0):
 
         # print(uniqueProductId)
 
-        try:
-            insertingUniqueProducts(uniqueProductId, uniqueProductRank, uniqueProductTitle, categoryIdForDB, uniqueProductUrl, 
-                            uniqueProductSellerUserName, uniqueProductFeedbackScore, uniqueProductPostiveFeedbackPercent, uniqueProductTopRatedSeller,
-                            uniqueProductPrice, uniqueProductImage, uniqueProductDuplicate)
-        except:
-            print("No more products to add to Unique product table!")
-            break
+        # try:
+        #     insertingUniqueProducts(uniqueProductId, uniqueProductRank, uniqueProductTitle, categoryIdForDB, uniqueProductUrl, 
+        #                     uniqueProductSellerUserName, uniqueProductFeedbackScore, uniqueProductPostiveFeedbackPercent, uniqueProductTopRatedSeller,
+        #                     uniqueProductPrice, uniqueProductImage, uniqueProductDuplicate)
+        # except:
+        #     print("Product is already added OR No more products to add to Unique product table!")
+        #    # break
 
+print(len(similarProductList))
+
+count = 0
 # WRITE THE DUPLICATED NON-RECOMMENDED PRODUCTS TO THE DATABASE
 if(len(similarProductList) != 0):
     for s in similarProductList:
+
+        count = count + 1
+        print(count)
+
         similarProduct = s
         similarProductId = similarProduct['itemId']
         similarProductTitle = similarProduct['title']
@@ -354,15 +364,17 @@ if(len(similarProductList) != 0):
         similarProductPrice = similarProduct['price']
         similarProductImage = similarProduct['image']
         similarProductDuplicate = similarProduct['isDuplicate']
+
         # print(similarProduct)
 
-        try:
-            insertingDuplicateProducts(similarProductId, similarProductTitle, categoryIdForDB, similarProductUrl, similarProductSellerUserName,
-                                        similarProductFeedbackScore, similarProductPostiveFeedbackPercent, similarProductTopRatedSeller, 
-                                        similarProductPrice, similarProductImage, similarProductDuplicate)
-        except:
-            print("No more products to add to duplicate Products table!")
-            break
+        # try:
+        #     insertingDuplicateProducts(similarProductId, similarProductTitle, categoryIdForDB, similarProductUrl, similarProductSellerUserName,
+        #                                 similarProductFeedbackScore, similarProductPostiveFeedbackPercent, similarProductTopRatedSeller, 
+        #                                 similarProductPrice, similarProductImage, similarProductDuplicate)
+        # except:
+        #     print("No more products to add to duplicate Products table!")
+        #     # break
+            
 
 app.run()
 
