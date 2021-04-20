@@ -27,23 +27,37 @@ def getCategoryDetails():
     return details
 
 # load for home page
-def getAllProducts():
+def getAllProducts(requestedCategoryId:str):
+    categoryId = int(requestedCategoryId)
+
     cursor = database.cursor()
     cursor.execute("""SELECT * FROM UniqueProducts
-                    ORDER BY  ProductRank """)
+                    WHERE CategoryId = %s 
+                    ORDER BY  ProductRank ;""", (categoryId))
     allProducts = cursor.fetchall()
     return allProducts
 
 # return sorted price list
-def getAllProductsSortedByPrice():
+def getAllProductsSortedByPrice(requestedCategoryId:str):
+    categoryId = int(requestedCategoryId)
+
     cursor = database.cursor()
     cursor.execute("""SELECT * FROM UniqueProducts
-                    ORDER BY  Price """)
+                    WHERE CategoryId = %s 
+                    ORDER BY  Price ;""", (categoryId))
     priceSortedProducts = cursor.fetchall()
     return priceSortedProducts
 
+# return requeted Unique product list 
+def getRequestedUniqueProduct(requestedUniqueItemId:str):
+    cursor = database.cursor()
+    cursor.execute("""SELECT * FROM UniqueProducts
+                    WHERE ItemId = %s ; """, (requestedUniqueItemId))
+    requestedUniqueProduct = cursor.fetchall()
+    return requestedUniqueProduct
+
 # return requeted duplicated product list 
-def getRequestedProduct(requestedItemId:str):
+def getRequestedDuplicateProduct(requestedItemId:str):
     cursor = database.cursor()
     cursor.execute("""SELECT * FROM DuplicateProducts
                     WHERE MasterId = %s ; """, (requestedItemId))
@@ -51,10 +65,13 @@ def getRequestedProduct(requestedItemId:str):
     return requestedProduct
 
 # return sorted feedback score list
-def getAllProductsSortedByFeedbackScore():
+def getAllProductsSortedByFeedbackScore(requestedCategoryId:str):
+    categoryId = int(requestedCategoryId)
+
     cursor = database.cursor()
     cursor.execute("""SELECT * FROM UniqueProducts
-                    ORDER BY  FeedbackScore DESC""")
+                    WHERE CategoryId = %s 
+                    ORDER BY  FeedbackScore DESC ;""", (categoryId))
     FeedbackScoreSortedProducts = cursor.fetchall()
     return FeedbackScoreSortedProducts
 
@@ -67,9 +84,10 @@ def getSearchedProduct(requestedProductName:str):
     return searchResult
 
 categoryList = getCategoryDetails()
-allProductList = getAllProducts()
-priceSortedProductList = getAllProductsSortedByPrice()
-FeedbackScoreSortedProductList = getAllProductsSortedByFeedbackScore()
+
+@app.route('/', methods=['GET'])
+def home():
+    return "<h1> BuyLegit data set !</p>"
 
 # Return all category details
 @app.route('/category', methods=['GET'])
@@ -79,11 +97,19 @@ def api_category():
 # Return all original product list
 @app.route('/product/all', methods=['GET'])
 def api_all():
+
+    if 'categoryId' in request.args:
+        categoryId = request.args['categoryId']
+
+    else:
+        return "Error: No id field provided. Please specify an categoryId."
+
+    allProductList = getAllProducts(categoryId)
     return jsonify(allProductList)
 
-# return selected item according to requested item ID
-@app.route('/product', methods=['GET'])
-def api_id():
+# return selected unique item according to requested item ID
+@app.route('/product/unique', methods=['GET'])
+def api_unique_id():
 
     if 'itemId' in request.args:
         itemId = request.args['itemId']
@@ -91,20 +117,61 @@ def api_id():
     else:
         return "Error: No id field provided. Please specify an id."
 
-    requestedDuplicateList = getRequestedProduct(itemId)
+    requestedUniqueProduct = getRequestedUniqueProduct(itemId)
 
-    print("PRINT " , requestedDuplicateList)
-    return jsonify(requestedDuplicateList)
+    print("PRINT " , requestedUniqueProduct)
+    return jsonify(requestedUniqueProduct)
+
+# return selected duplicate item according to requested item ID
+@app.route('/product/result', methods=['GET'])
+def api_result_id():
+
+    if 'itemId' in request.args:
+        itemId = request.args['itemId']
+
+    else:
+        return "Error: No id field provided. Please specify an id."
+
+    requestedDuplicateProduct = getRequestedDuplicateProduct(itemId)
+    requestedUniqueProduct = getRequestedUniqueProduct(itemId)
+
+    finalResult = []
+    # append recommended duplicate product(s) to result List
+    finalResult.append(requestedDuplicateProduct) 
+
+    # append recommended unique product to result List
+    # NOTE THAT THIS WILL APPEND AS THE LAST INDEX
+    finalResult.append(requestedUniqueProduct)
+
+    print(finalResult)
+    return jsonify(finalResult)
 
 # Return all products sort according to the price
 @app.route('/product/all/priceSort', methods=['GET'])
 def api_all_priceSort():
+
+    if 'categoryId' in request.args:
+        categoryId = request.args['categoryId']
+
+    else:
+        return "Error: No id field provided. Please specify an categoryId."
+
+    priceSortedProductList = getAllProductsSortedByPrice(categoryId)
+
     return jsonify(priceSortedProductList)
 
 # Return all products sort according to the feedback score
 @app.route('/product/all/feedbackScoreSort', methods=['GET'])
 def api_all_feedbackScoreSort():
-    return jsonify(FeedbackScoreSortedProductList)
+
+    if 'categoryId' in request.args:
+        categoryId = request.args['categoryId']
+    else:
+        return "Error: No id field provided. Please specify an categoryId."
+
+    feedbackScoreSortedProductList = getAllProductsSortedByFeedbackScore(categoryId)
+
+    return jsonify(feedbackScoreSortedProductList)
 
 # return selected item according to requested title
 @app.route('/product/search', methods=['GET'])
