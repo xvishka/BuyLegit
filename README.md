@@ -1,70 +1,49 @@
-# Getting Started with Create React App
+# BuyLegit
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+LANGUAGE VERSIONS
+  python version - python3 3.9.2
+  python interpreter version - python3 3.9.2 64-bit('venv') / python3 3.9.2 64-bit('env')
 
-## Available Scripts
 
-In the project directory, you can run:
+INSTALLATIONS
+#FLASK
+  Flask supports Python 3.5 and newer, Python 2.7, and PyPy.
+    install Flask
+    $ pip install Flask
+    
+Solve Cross Origin Resource Sharing with Flask
+  pip install -U flask-cors
+    
+Connect with MySQL 
+  pip install pymysql
+  
 
-### `npm start`
+1. INSTRUCTIONS FOR CREATE FLASK PROJECT
+    1. Create a new project folder on your file system
+    2. Open that project in command prompt to create a virtual environment named "env"
+    3.    Enter below commands based on your interpreter
+               # Linux
+                sudo apt-get install python3-venv    # If needed
+                python3 -m venv env
+                
+                # macOS
+                python3 -m venv env
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+                # Windows
+                python -m venv env
+      4. Open the project folder in VS Code
+      5. In VS Code, open the Command Palette and select the "Python: Select Interpreter"
+      6. The command presents a list of available interpreters, then you can select Python Interpreter
+      7. Update pip in the virtual environment
+                python -m pip install --upgrade pip
+      8. Install Flask in the virtual environment
+                python -m pip install flask
+      9. Inside the project create new python file and add code to import Flask and create an instance of the Flask object.
+                from flask import Flask
+                app = Flask(__name__)
+      10. Add functions with app.route
+      11. Save file and run the app
+                python -m flask run
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+  
