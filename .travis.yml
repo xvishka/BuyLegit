@@ -1,7 +1,6 @@
 language: python
 python:
   - "3.9"
-  - "3.9-dev"  # 3.9 development branch
 # command to install dependencies
 install:
   - pip install -r requirements.txt
@@ -11,5 +10,3 @@ script:
 deploy:
   github-token: $GITHUB_TOKEN
 cache: pip
-install:
-  - pip install -r requirements.txt
