@@ -15,3 +15,9 @@ install:
 # command to run tests
 script:
   - pytest
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN
+  on: 
+    branch: gh-pages
