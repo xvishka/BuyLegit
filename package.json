@@ -1,9 +1,0 @@
-{
-    "name": "buy-legit",
-    "version": "0.1.0",
-    "private": true,
-    "scripts": {
-      "postinstall": "cd backend && pip3 install -r requirements.txt",
-      "start": "python3 ./backend/api.py"
-    }
-}
