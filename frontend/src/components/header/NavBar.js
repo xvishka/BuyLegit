@@ -10,7 +10,7 @@ function NavBar() {
        <header >
            <img src={Menu} alt="Mobile Bar" className="menu" width="30" /> 
            <div className="logo">
-           <Link to="/"><img width='450px' src='Images/logo.png' alt="logo"/></Link>
+           <Link to="/"><img width='450px' src='../../../Images/logo.png' alt="logo"/></Link>
            </div>
            <ul>
                <li><Link to="/" style={{fontSize:'25px', fontWeight:'bold'}}>Home</Link></li>

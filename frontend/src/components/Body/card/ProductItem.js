@@ -11,7 +11,7 @@ function ProductItem({ product }) {
                 <p style={{fontSize:'20px', fontWeight:'400', fontFamily:'Verdana'}}>Feedback Score: {product[6]}</p>
 
                 {/* conditionally rendering an icon to recognize duplicated products  */}
-                {product[11] === 'true' ? <img alt="duplicate" style={{ objectFit: 'contain', width: 40, height: 50, marginTop: -120, float: 'right' }} src="/Images/duplicate.png" /> : null}
+                {product[11] === 'true' ? <img alt="duplicate" style={{ objectFit: 'contain', width: 40, height: 50, marginTop: -120, float: 'right' }} src="../../../Images/duplicate.png" /> : null}
             </div>
         </div>
     );
