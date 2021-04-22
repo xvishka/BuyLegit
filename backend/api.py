@@ -4,7 +4,6 @@ import json
 import csv
 from flask_cors import CORS
 import pymysql
-import re
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
@@ -21,13 +20,16 @@ database = pymysql.connect(
 
 # get category details
 def getCategoryDetails():
+
     cursor = database.cursor()
     cursor.execute("SELECT * FROM Category")
     details = cursor.fetchall()
+    
     return details
 
 # load for home page
 def getAllProducts(requestedCategoryId:str):
+
     categoryId = int(requestedCategoryId)
 
     cursor = database.cursor()
@@ -85,7 +87,7 @@ def getSearchedProduct(requestedProductName:str):
 
 categoryList = getCategoryDetails()
 
-@app.route('/', methods=['GET'])
+# @app.route('/', methods=['GET'])
 def home():
     return "<h1> BuyLegit data set !</p>"
 
@@ -121,6 +123,23 @@ def api_unique_id():
 
     print("PRINT " , requestedUniqueProduct)
     return jsonify(requestedUniqueProduct)
+
+
+# return selected duplicate item list according to requested item ID
+@app.route('/product/duplicate', methods=['GET'])
+def api_duplicate_id():
+
+    if 'itemId' in request.args:
+        itemId = request.args['itemId']
+
+    else:
+        return "Error: No id field provided. Please specify an id."
+
+    requestedDuplicateProductList = getRequestedDuplicateProduct(itemId)
+
+    print("PRINT " , requestedDuplicateProductList)
+    return jsonify(requestedDuplicateProductList)
+
 
 # return selected duplicate item according to requested item ID
 @app.route('/product/result', methods=['GET'])
@@ -189,3 +208,4 @@ def api_search():
 # with open('allProducts.json', 'w') as out:
 #     json.dump(allProductList, out)
 
+app.run()
