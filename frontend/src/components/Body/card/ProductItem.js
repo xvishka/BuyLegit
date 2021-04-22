@@ -1,4 +1,5 @@
 import React from 'react';
+import copyimage from '../../../pictures/copypic.png';
 
 //Component used to display a product in the Home page
 function ProductItem({ product }) {
@@ -11,7 +12,7 @@ function ProductItem({ product }) {
                 <p style={{fontSize:'20px', fontWeight:'400', fontFamily:'Verdana'}}>Feedback Score: {product[6]}</p>
 
                 {/* conditionally rendering an icon to recognize duplicated products  */}
-                {product[11] === 'true' ? <img alt="duplicate" style={{ objectFit: 'contain', width: 40, height: 50, marginTop: -120, float: 'right' }} src="../../../Images/duplicate.png" /> : null}
+                {product[11] === 'true' ? <img alt="duplicate" style={{ objectFit: 'contain', width: 40, height: 50, marginTop: -120, float: 'right' }} src={copyimage} /> : null}
             </div>
         </div>
     );
