@@ -208,4 +208,4 @@ def api_search():
 # with open('allProducts.json', 'w') as out:
 #     json.dump(allProductList, out)
 
-app.run()
+# app.run()
