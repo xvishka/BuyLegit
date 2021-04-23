@@ -87,7 +87,7 @@ def getSearchedProduct(requestedProductName:str):
 
 categoryList = getCategoryDetails()
 
-# @app.route('/', methods=['GET'])
+@app.route('/', methods=['GET'])
 def home():
     return "<h1> BuyLegit data set !</p>"
 
