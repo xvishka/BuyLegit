@@ -48,7 +48,7 @@ productList = []
 similarityList = []
 
 try:
-    f = open('Iphone7Case.json',)
+    f = open('backend/Iphone7Case.json',)
     data = json.load(f)
 
     for q in data['products']:
@@ -61,7 +61,7 @@ except:
 
 try:
     # Load Unique data and duplicate dat separately
-    ml = open('Iphone7CaseSimilarity.json',)
+    ml = open('backend/Iphone7CaseSimilarity.json',)
     mlData = json.load(ml)
 
     for k in mlData:
@@ -329,25 +329,19 @@ if(len(recommendedUniqueProductList) != 0):
         uniqueProductImage = uniqueProduct['image']
         uniqueProductDuplicate = uniqueProduct['isDuplicate']
 
-        # print(uniqueProductId)
-
-        # try:
-        #     insertingUniqueProducts(uniqueProductId, uniqueProductRank, uniqueProductTitle, categoryIdForDB, uniqueProductUrl, 
-        #                     uniqueProductSellerUserName, uniqueProductFeedbackScore, uniqueProductPostiveFeedbackPercent, uniqueProductTopRatedSeller,
-        #                     uniqueProductPrice, uniqueProductImage, uniqueProductDuplicate)
-        # except:
-        #     print("Product is already added OR No more products to add to Unique product table!")
-        #    # break
+        try:
+            insertingUniqueProducts(uniqueProductId, uniqueProductRank, uniqueProductTitle, categoryIdForDB, uniqueProductUrl, 
+                            uniqueProductSellerUserName, uniqueProductFeedbackScore, uniqueProductPostiveFeedbackPercent, uniqueProductTopRatedSeller,
+                            uniqueProductPrice, uniqueProductImage, uniqueProductDuplicate)
+        except:
+            print("Product is already added OR No more products to add to Unique product table!")
+           # break
 
 print(len(similarProductList))
 
-count = 0
 # WRITE THE DUPLICATED NON-RECOMMENDED PRODUCTS TO THE DATABASE
 if(len(similarProductList) != 0):
     for s in similarProductList:
-
-        count = count + 1
-        print(count)
 
         similarProduct = s
         similarProductId = similarProduct['itemId']
@@ -365,15 +359,13 @@ if(len(similarProductList) != 0):
         similarProductImage = similarProduct['image']
         similarProductDuplicate = similarProduct['isDuplicate']
 
-        # print(similarProduct)
-
-        # try:
-        #     insertingDuplicateProducts(similarProductId, similarProductTitle, categoryIdForDB, similarProductUrl, similarProductSellerUserName,
-        #                                 similarProductFeedbackScore, similarProductPostiveFeedbackPercent, similarProductTopRatedSeller, 
-        #                                 similarProductPrice, similarProductImage, similarProductDuplicate)
-        # except:
-        #     print("No more products to add to duplicate Products table!")
-        #     # break
+        try:
+            insertingDuplicateProducts(similarProductId, similarProductTitle, categoryIdForDB, similarProductUrl, similarProductSellerUserName,
+                                        similarProductFeedbackScore, similarProductPostiveFeedbackPercent, similarProductTopRatedSeller, 
+                                        similarProductPrice, similarProductImage, similarProductDuplicate)
+        except:
+            print("No more products to add to duplicate Products table!")
+            # break
             
 
 app.run()
