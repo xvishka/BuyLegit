@@ -47,7 +47,7 @@ function DetailProduct() {
                     <span style={{fontSize:'30px', fontWeight:'bold', color:'#C62828'}}>$ {data[9]}</span>
                     <p style={{fontSize:'23px', fontWeight:'600', fontFamily:'inherit'}}>Seller : {data[5]}</p>
                     <p style={{fontSize:'23px', fontWeight:'600', fontFamily:'inherit'}}>FeedbackScore      : {data[6]}</p>
-                    <p style={{fontSize:'23px', fontWeight:'600', fontFamily:'inherit'}}>Positive Percentage: {data[7]}</p>
+                    <p style={{fontSize:'23px', fontWeight:'600', fontFamily:'inherit'}}>Positive Feedback Percentage : {data[7]}%</p>
                     <button className="cart" style={{fontSize:'25px',borderRadius:'8px', color:'white'}}>
                         <a href={data[4]} target="_blank" rel="noreferrer" style={{fontSize:'25px', color:'white'}}  >Buy Now</a></button>
                 </div>
