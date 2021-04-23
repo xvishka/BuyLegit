@@ -18,7 +18,7 @@ function About() {
 
             </div>
             <img src={aboutimg} alt="about" style={{marginLeft:'42%'}}/> <br></br>
-            <a href = 'mailto:thiranhettiarachchi@gmail.com'><h1 style={{textAlign:'center',color:'teal'}}>Developed by Apicem</h1></a>
+            <a href = 'mailto:contact@buylegit.xyz'><h1 style={{textAlign:'center',color:'teal'}}>Developed by Apicem</h1></a>
         </div>
     )
 }
